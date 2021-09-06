@@ -28,7 +28,7 @@ class TodoServiceTest {
 	private TodoService todoService;
 	
 	@Test
-	void testAdd() {
+	public void testAdd() {
 		when(this.todoRepository.save(any(TodoEntity.class)))
 				.then(AdditionalAnswers.returnsFirstArg());
 		TodoRequest expected = new TodoRequest();
@@ -39,7 +39,7 @@ class TodoServiceTest {
 	}
 
 	@Test
-	void testSearchById() {
+	public void testSearchById() {
 		TodoEntity todoEntity = new TodoEntity();
 		todoEntity.setId(123L);
 		todoEntity.setTitle("test TITLE");
@@ -61,7 +61,7 @@ class TodoServiceTest {
 	
 	//정말 에러가 잘 발생하는지 확인하는 테스트
 	@Test
-	void searchByIdFailed() {
+	public void searchByIdFailed() {
 		given( this.todoRepository.findById(anyLong()) )
 				.willReturn( Optional.empty() );
 		
