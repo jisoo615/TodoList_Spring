@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.example.model.TodoEntity;
 import org.example.model.TodoRequest;
-import org.example.repository.TodoReapository;
+import org.example.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class TodoService {
 	
-	private final TodoReapository todoRepository;
+	private final TodoRepository todoRepository;
 	
 	//1 todo 리스트 목록에 아이템 추가
 	//2 todo 리스트 목록에서 특정 아이템 조회
