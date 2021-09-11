@@ -6,7 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.example.model.TodoEntity;
+import org.example.controller.TodoController;
+import org.example.model.TodoModel;
 import org.example.model.TodoRequest;
 import org.example.service.TodoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,11 +29,11 @@ class TodoControllerTest {
 	@MockBean
 	TodoService todoService;//Mock bean으로 사용해줄 todoService
 	
-	private TodoEntity expected;
+	private TodoModel expected;
 	
 	@BeforeEach
 	void setUp() {//매번 테스트 전에 객체 초기화
-		this.expected = new TodoEntity();
+		this.expected = new TodoModel();
 		this.expected.setId(123L);
 		this.expected.setTitle("TEST TITLE");
 		this.expected.setOrder(0L);
@@ -44,7 +45,7 @@ class TodoControllerTest {
 		when( this.todoService.add(any(TodoRequest.class)))
 				.then( (i) -> {
 					TodoRequest request = i.getArgument(0, TodoRequest.class);
-					return new TodoEntity(this.expected.getId(),
+					return new TodoModel(this.expected.getId(),
 							request.getTitle(),	/*타이틀만 request 값 반환*/
 							this.expected.getOrder(),
 							this.expected.isCompleted());

@@ -15,11 +15,11 @@ public class TodoResponse {//투두엔터티의 모든 값을 써줌
 	
 	private String url;
 	
-	public TodoResponse(TodoEntity todoEntity) {
-		this.id = todoEntity.getId();
-		this.title = todoEntity.getTitle();
-		this.order = todoEntity.getOrder();
-		this.completed = todoEntity.isCompleted();
+	public TodoResponse(TodoModel todoModel) {
+		this.id = todoModel.getId();
+		this.title = todoModel.getTitle();
+		this.order = todoModel.getOrder();
+		this.completed = todoModel.isCompleted();
 		
 		this.url = "http://localhost:8080/" + this.id;//일단은 간단하게 이렇게 작성함..
 	}

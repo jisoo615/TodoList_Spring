@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor /*파라미터 없는 생성자 생성*/
 @AllArgsConstructor /*모든 필드가 파라미터로 있는 생성자 생성*/
-public class TodoEntity {
+public class TodoModel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

@@ -2,7 +2,7 @@ package org.example.service;
 
 import java.util.List;
 
-import org.example.model.TodoEntity;
+import org.example.model.TodoModel;
 import org.example.model.TodoRequest;
 import org.example.repository.TodoRepository;
 import org.springframework.stereotype.Service;
@@ -22,46 +22,46 @@ public class TodoService {
 	//5 todo 리스트 목록에서 특정 아이템 삭제
 	//6 todo 리스트 목록 전체 삭제
 	
-	public TodoEntity add(TodoRequest request) {
-		TodoEntity todoEntity = new TodoEntity();
-		todoEntity.setTitle(request.getTitle());
-		todoEntity.setOrder(request.getOrder());
-		todoEntity.setCompleted(request.isCompleted());
+	public TodoModel add(TodoRequest request) {
+		TodoModel todoModel = new TodoModel();
+		todoModel.setTitle(request.getTitle());
+		todoModel.setOrder(request.getOrder());
+		todoModel.setCompleted(request.isCompleted());
 		
-		return todoRepository.save(todoEntity);//todoRepository는 제너릭이 TodoEntity이므로 바로 리턴
+		return todoRepository.save(todoModel);//todoRepository는 제너릭이 TodoEntity이므로 바로 리턴
 	}
 	
-	public TodoEntity searchById(Long id) {
+	public TodoModel searchById(Long id) {
 		
 		return this.todoRepository.findById(id)
 						.orElseThrow();
 	}
 	
-	public List<TodoEntity> searchAll() {
+	public List<TodoModel> searchAll() {
 		return this.todoRepository.findAll();
 	}
 	
-	public TodoEntity updateById(Long id, TodoRequest request) {
-		TodoEntity todoEntity = this.searchById(id);
+	public TodoModel updateById(Long id, TodoRequest request) {
+		TodoModel todoModel = this.searchById(id);
 		if(request.getTitle()!=null) {
-			todoEntity.setTitle(request.getTitle());
+			todoModel.setTitle(request.getTitle());
 		}
 		if(request.getOrder()!=null) {
-			todoEntity.setOrder(request.getOrder());
+			todoModel.setOrder(request.getOrder());
 		}
-		if(todoEntity.isCompleted() != request.isCompleted()) {
-			todoEntity.setCompleted(request.isCompleted());
+		if(todoModel.isCompleted() != request.isCompleted()) {
+			todoModel.setCompleted(request.isCompleted());
 		}
 
-		return this.todoRepository.save(todoEntity);//업데이트도 똑같이 save사용
+		return this.todoRepository.save(todoModel);//업데이트도 똑같이 save사용
 	}
 	
-	public TodoEntity deleteById(Long id) {
+	public TodoModel deleteById(Long id) {
 		this.todoRepository.deleteById(id);
 		return null;
 	}
 	
-	public TodoEntity deleteAll() {
+	public TodoModel deleteAll() {
 		this.todoRepository.deleteAll();
 		return null;
 	}
